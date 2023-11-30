@@ -39,14 +39,16 @@ cd grading-area
 javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" *.java
 java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > results.txt
 
+
+
 FULLCREDIT=`grep -o OK results.txt` 
 FAILED=`grep -o FAILURES results.txt`
 
-if [[ FULLCREDIT == "OK" ]]
-    then 
-        echo 'Full Credit'
+if [[ $FULLCREDIT == "OK" ]]
+then 
+    echo 'Full Credit'
 fi 
-if [[ FAILED == "FAILURES" ]]
-    then 
-        echo 'Full Credit'
+if [[ $FAILED == "FAILURES" ]]
+then 
+    echo 'Failures Credit'
 fi 
