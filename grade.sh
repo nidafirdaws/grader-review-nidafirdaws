@@ -25,6 +25,10 @@ fi
 
 javac student-submission/ListExamples.java
 
+if [[ $? -ne 0 ]]
+    then 
+        echo 'Compile error'
+fi
 FOUND=`find student-submission -name "ListExamples.class"`
 if [[ $FOUND == " " ]]
 then 
@@ -36,8 +40,8 @@ cp -r student-submission/* grading-area
 cp TestListExamples.java grading-area
 cp -r lib grading-area
 cd grading-area
-javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" *.java
-java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > results.txt
+javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java
+java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples > results.txt
 
 
 
@@ -50,5 +54,5 @@ then
 fi 
 if [[ $FAILED == "FAILURES" ]]
 then 
-    echo 'Failures Credit'
+    echo 'Not full credit'
 fi 
